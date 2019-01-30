@@ -9,6 +9,8 @@ module.exports = {
   	externals: [
   		/^orbit-ui/,
   	],
-  	libraryTarget: 'amd',
+  	output: {
+	  	libraryTarget: 'amd',
+  	},
   },
 };
