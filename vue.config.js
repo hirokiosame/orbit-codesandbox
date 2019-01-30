@@ -11,6 +11,7 @@ module.exports = {
   	],
   	output: {
 	  	libraryTarget: 'amd',
+		library: 'App',
   	},
   },
 };
