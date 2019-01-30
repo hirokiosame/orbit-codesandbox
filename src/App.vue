@@ -1,29 +1,26 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    Orbit test
+  <o-layout>
+    <o-heading>
+      Orbit Demos
+    </o-heading>
     <demo-1 />
-  </div>
+  </o-layout>
 </template>
 
 <script>
+import { OLayout } from 'orbit-ui/components/Layout';
+import { OHeading } from 'orbit-ui/components/Heading';
 import Demo1 from './components/Demo1.vue'
 
 export default {
   name: 'app',
   components: {
+    OLayout,
+    OHeading,
     Demo1
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>

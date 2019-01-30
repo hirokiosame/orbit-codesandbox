@@ -1,6 +1,9 @@
 <template>
   <div>
-    <o-button @click="sayHi">
+    <o-button
+      variant="primary"
+      @click="sayHi"
+    >
       Hello Orbit
     </o-button>
   </div>
