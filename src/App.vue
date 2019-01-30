@@ -1,24 +1,25 @@
 <template>
   <div id="app">
-    <img width="25%" src="./assets/logo.png">
-    <HelloWorld/>
+    <img alt="Vue logo" src="./assets/logo.png">
+    Orbit test
+    <HelloWorld msg="Vue CLI 3 in <a href='https://hackernoon.com/codesandbox-containers-5864a8f26715' target='_blank'>CodeSandbox Containers"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld";
+import HelloWorld from './components/HelloWorld.vue'
 
 export default {
-  name: "App",
+  name: 'app',
   components: {
     HelloWorld
   }
-};
+}
 </script>
 
 <style>
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
