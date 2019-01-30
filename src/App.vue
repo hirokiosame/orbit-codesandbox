@@ -2,17 +2,17 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     Orbit test
-    <HelloWorld msg="Vue CLI 3 in <a href='https://hackernoon.com/codesandbox-containers-5864a8f26715' target='_blank'>CodeSandbox Containers"/>
+    <demo-1 />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Demo1 from './components/Demo1.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    Demo1
   }
 }
 </script>
