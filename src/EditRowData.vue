@@ -1,6 +1,6 @@
 <template>
 	<o-modal>
-		<o-modal-pane :title="clonedRow.name">
+		<o-modal-pane title="Edit Planet">
 			<template
 				slot="actions"
 				slot-scope="modal"
