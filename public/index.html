@@ -2,12 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Orbit CodeSandbox</title>
-    <link rel="stylesheet" href="//orbit.weebly.net/cdn/ref/v3.17.0/styles.css">
-    <link rel="stylesheet" href="//orbit.weebly.net/cdn/ref/v3.17.0/sq-font.css">
-    <script type="systemjs-importmap">{"imports":{"orbit-ui/":"//orbit.weebly.net/cdn/ref/v3.17.0/"}}</script>
+    <link rel="stylesheet" href="https://orbit.weebly.net/cdn/ref/v3.17.0/styles.css">
+    <link rel="stylesheet" href="https://orbit.weebly.net/cdn/ref/v3.17.0/sq-font.css">
+    <script type="systemjs-importmap">{"imports":{"orbit-ui/":"https://orbit.weebly.net/cdn/ref/v3.17.0/"}}</script>
     <script type="text/javascript" src="//unpkg.com/systemjs@3.0.0/dist/system.min.js"></script>
     <script type="text/javascript" src="//unpkg.com/systemjs@3.0.0/dist/extras/amd.min.js"></script>
     <script type="text/javascript" src="//unpkg.com/systemjs@3.0.0/dist/extras/named-register.min.js"></script>
@@ -23,7 +22,7 @@
         try {
           System.import('App');
         } catch(e) {
-          setTimeout(tryAgain, 500);
+          setTimeout(tryAgain, 10);
         }
       })();
     </script>
