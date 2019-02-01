@@ -4,15 +4,18 @@
     @click="sayHi"
   >
     Hello Orbit!
+    <o-icon name="thumbs-up" />
   </o-button>
 </template>
 
 <script>
 import { OButton } from 'orbit-ui/components/Button';
+import { OIcon } from 'orbit-ui/components/Icon';
 
 export default {
   components: {
     OButton,
+    OIcon,
   },
 
   methods: {
