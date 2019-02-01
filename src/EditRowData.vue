@@ -15,10 +15,10 @@
 
 			<o-form @submit.prevent>
 				<o-form-item label="Planet name">
-					<o-input v-model="clonedRow.name" />
+					<o-input v-model="clonedPlanet.planet" />
 				</o-form-item>
-					<o-form-item label="Planet type">
-					<o-input v-model="clonedRow.type" />
+				<o-form-item label="Icon URL">
+					<o-input v-model="clonedPlanet.icon" />
 				</o-form-item>
 				<o-grid>
 					<o-form-item
@@ -26,18 +26,16 @@
 						slot="grid-item"
 					>
 						<o-input
-							v-model="clonedRow.diameter"
+							v-model="clonedPlanet.diameter"
 							suffix="km"
 						/>
 					</o-form-item>
 					<o-form-item
-						label="Mass"
+						label="Distance from Sun"
 						slot="grid-item"
 					>
-						<o-input v-model="clonedRow.mass">
-							<template slot="suffix">
-								× 10<sup>24</sup> kg
-							</template>
+						<o-input v-model="clonedPlanet.distanceFromSun">
+							<template slot="suffix"> million km</template>
 						</o-input>
 					</o-form-item>
 				</o-grid>
@@ -65,7 +63,7 @@ export default {
 	},
 
 	props: {
-		row: {
+		planet: {
 			type: Object,
 			required: true,
 		},
@@ -73,13 +71,13 @@ export default {
 
 	data() {
 		return {
-			clonedRow: { ... this.row },
+			clonedPlanet: { ... this.planet },
 		};
 	},
 
 	methods: {
 		saveData(modal) {
-			this.$emit('update', this.clonedRow);
+			this.$emit('update', this.clonedPlanet);
 			modal.close();
 		},
 	},

@@ -1,14 +1,19 @@
 <template>
 	<o-table :row-data="tableData">
-		<o-table-col property="name">
+		<o-table-col property="icon">
 			Planet
 			<template
 				slot="formatter"
 				slot-scope="props"
 			>
-				{{ props.content }}<br>
-				({{ props.data.type }})
+				<img
+					:src="props.content"
+					align="middle"
+				>
 			</template>
+		</o-table-col>
+		<o-table-col property="planet">
+			Name
 		</o-table-col>
 		<o-table-col
 			property="diameter"
@@ -23,15 +28,15 @@
 			</template>
 		</o-table-col>
 		<o-table-col
-			property="mass"
+			property="distanceFromSun"
 			align="right"
 		>
-			Mass
+			Distance from Sun
 			<template
 				slot="formatter"
 				slot-scope="props"
 			>
-				{{ formatNumber(props.content) }} × 10<sup>24</sup> kg
+				{{ formatNumber(props.content) }} million km
 			</template>
 		</o-table-col>
 		<o-table-col
@@ -72,42 +77,32 @@ export default {
  
 	data() {
 		return {
-			tableData: [
-				{
-					name: 'Mercury',
-					type: 'Terrestrial Planet',
-					diameter: 4879,
-					mass: 0.330,
-				},
-				{
-					name: 'Venus',
-					type: 'Terrestrial Planet',
-					diameter: 12104,
-					mass: 4.87,
-				},
-				{
-					name: 'Earth',
-					type: 'Terrestrial Planet',
-					diameter: 12756,
-					mass: 5.97,
-				},
-			],
+			tableData: [],
 		};
 	},
  
 	methods: {
-		formatNumber: n => n.toLocaleString('en-US'),
-		editRow(row) {
+		formatNumber: n => parseFloat(n).toLocaleString('en-US'),
+		editRow(planet) {
 			this.modalLayer.open(
 				EditRowData,
 				{
-					props: { row },
+					props: { planet },
 					on: {
-						update: newData => Object.assign(row, newData),
+						update: newData => Object.assign(planet, newData),
 					},
 				},
 			);
 		},
+		async fetchData() {
+			const data = await fetch('https://gist.githubusercontent.com/hirokiosame/8af28509864aed5657693aef99005477/raw/b58d0d03e4b42cea25783125370925e138ed4506/planets.json').then(data => data.json());
+
+			this.tableData = data;
+		},
+	},
+
+	created() {
+		this.fetchData();
 	},
 };
 </script> 
