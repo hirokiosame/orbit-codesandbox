@@ -14,13 +14,13 @@
 			</template>
 
 			<o-form @submit.prevent>
-				<o-form-item label="Planet name">
-					<o-input v-model="clonedPlanet.planet" />
-				</o-form-item>
-				<o-form-item label="Icon URL">
-					<o-input v-model="clonedPlanet.icon" />
-				</o-form-item>
 				<o-grid>
+					<o-form-item
+						label="Planet name"
+						slot="grid-item"
+					>
+						<o-input v-model="clonedPlanet.planet" />
+					</o-form-item>
 					<o-form-item
 						label="Diameter"
 						slot="grid-item"
@@ -30,15 +30,10 @@
 							suffix="km"
 						/>
 					</o-form-item>
-					<o-form-item
-						label="Distance from Sun"
-						slot="grid-item"
-					>
-						<o-input v-model="clonedPlanet.distanceFromSun">
-							<template slot="suffix"> million km</template>
-						</o-input>
-					</o-form-item>
 				</o-grid>
+				<o-form-item label="Icon URL">
+					<o-input v-model="clonedPlanet.icon" />
+				</o-form-item>
 			</o-form>
 		</o-modal-pane>
 	</o-modal>

@@ -28,18 +28,6 @@
 			</template>
 		</o-table-col>
 		<o-table-col
-			property="distanceFromSun"
-			align="right"
-		>
-			Distance from Sun
-			<template
-				slot="formatter"
-				slot-scope="props"
-			>
-				{{ formatNumber(props.content) }} million km
-			</template>
-		</o-table-col>
-		<o-table-col
 			width="10%"
 			align="right"
 		>
