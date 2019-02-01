@@ -2,7 +2,7 @@
 	<o-layout>
 		<o-layout-header>
 			<o-heading>
-				Planet Data
+				Space posts
 			</o-heading>
 		</o-layout-header>
 		<o-layout-content>

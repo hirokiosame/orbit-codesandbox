@@ -1,68 +1,65 @@
 <template>
-	<o-table :row-data="tableData">
-		<o-table-col property="name">
-			Planet
-			<template
-				slot="formatter"
-				slot-scope="props"
+	<div>
+		<o-search
+			v-model="searchQuery"
+			placeholder="Search for a post"
+		/>
+
+		<br>
+
+		<o-table :row-data="filteredData">
+			<o-table-col
+				width="90px"
+				property="thumbnail"
 			>
-				{{ props.content }}<br>
-				({{ props.data.type }})
-			</template>
-		</o-table-col>
-		<o-table-col
-			property="diameter"
-			align="right"
-		>
-			Diameter
-			<template
-				slot="formatter"
-				slot-scope="props"
-			>
-				{{ formatNumber(props.content) }} km
-			</template>
-		</o-table-col>
-		<o-table-col
-			property="mass"
-			align="right"
-		>
-			Mass
-			<template
-				slot="formatter"
-				slot-scope="props"
-			>
-				{{ formatNumber(props.content) }} × 10<sup>24</sup> kg
-			</template>
-		</o-table-col>
-		<o-table-col
-			width="10%"
-			align="right"
-		>
-			<template
-				slot="formatter"
-				slot-scope="props"
-			>
-				<o-button
-					variant="muted"
-					@click.stop="editRow(props.data)"
+				<template
+					slot="formatter"
+					slot-scope="{ content }"
 				>
-					Edit
-				</o-button>
-			</template>
-		</o-table-col>
-	</o-table>
+					<img
+						v-if="content.startsWith('http')"
+						:src="content"
+						width="50px"
+					>
+				</template>
+			</o-table-col>
+
+			<o-table-col property="title">
+				Title
+			</o-table-col>
+
+			<o-table-col
+				width="10%"
+				align="right"
+			>
+				<template
+					slot="formatter"
+					slot-scope="props"
+				>
+					<o-button
+						variant="muted"
+						@click.stop="viewPost(props.data)"
+					>
+						View
+					</o-button>
+				</template>
+			</o-table-col>
+ 		</o-table>
+	</div>
 </template>
  
 <script>
 import { OTable, OTableCol } from 'orbit-ui/components/Table';
+import { OSearch } from 'orbit-ui/components/Search';
 import { OButton } from 'orbit-ui/components/Button';
 import { ModalLayer } from 'orbit-ui/components/Modal';
-import EditRowData from './EditRowData';
+import ViewPost from './ViewPost';
 
 export default {
 	components: {
 		OTable,
 		OTableCol,
+		OSearch,
 		OButton,
 	},
 
@@ -72,40 +69,32 @@ export default {
  
 	data() {
 		return {
-			tableData: [
-				{
-					name: 'Mercury',
-					type: 'Terrestrial Planet',
-					diameter: 4879,
-					mass: 0.330,
-				},
-				{
-					name: 'Venus',
-					type: 'Terrestrial Planet',
-					diameter: 12104,
-					mass: 4.87,
-				},
-				{
-					name: 'Earth',
-					type: 'Terrestrial Planet',
-					diameter: 12756,
-					mass: 5.97,
-				},
-			],
+			searchQuery: '',
+			tableData: [],
 		};
 	},
  
+	computed: {
+		filteredData() {
+			const { searchQuery, tableData } = this;
+			const pattern = new RegExp(searchQuery, 'i');
+			return !searchQuery ? tableData : tableData.filter(row => row.title.match(pattern));
+		},
+	},
+
+	created() {
+		this.fetchData();
+	},
+
 	methods: {
-		formatNumber: n => n.toLocaleString('en-US'),
-		editRow(row) {
+		async fetchData() {
+			const { data } = await fetch('https://www.reddit.com/r/spaceporn/new.json').then(data => data.json());
+			this.tableData = data.children.map(({ data }) => data).filter(data => data.url).slice(0, 5);
+		},
+		viewPost(post) {
 			this.modalLayer.open(
-				EditRowData,
-				{
-					props: { row },
-					on: {
-						update: newData => Object.assign(row, newData),
-					},
-				},
+				ViewPost,
+				{ props: { post } },
 			);
 		},
 	},

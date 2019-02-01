@@ -6,7 +6,7 @@
 			<br>
 			<o-nav>
 				<o-nav-link to="#">My Account</o-nav-link>
-				<o-nav-link to="#" active>Planet Data</o-nav-link>
+				<o-nav-link to="#" active>Space posts</o-nav-link>
 				<o-nav-link to="#">Logout</o-nav-link>
 			</o-nav>
 		</o-layout-sider>
