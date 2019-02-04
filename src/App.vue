@@ -1,27 +1,37 @@
 <template>
-  <o-button
-    variant="primary"
-    @click="sayHi"
+  <o-table
+      :row-data="names"
+      :checked="checkList"
   >
-    Hello World!
-    <o-icon name="thumbs-up" />
-  </o-button>
+      <o-table-col property="first">
+          First name
+      </o-table-col>
+      <o-table-col property="last">
+          Last name
+      </o-table-col>
+  </o-table>
 </template>
 
 <script>
-import { OButton } from 'orbit-ui/components/Button';
-import { OIcon } from 'orbit-ui/components/Icon';
+import { OTable, OTableCol } from 'orbit-ui/components/Table';
 
 export default {
   components: {
-    OButton,
-    OIcon,
+    OTable,
+    OTableCol,
   },
 
-  methods: {
-    sayHi() {
-      alert('Hi! 👋');
-    },
+  data() {
+    return {
+
+      names: [
+        { first: 'Jacob', last: 'Rex' },
+        { first: 'Hiroki', last: 'Osame' },
+        { first: 'Lokesh', last: 'Dhakar' },
+      ],
+
+      checkList: [],
+    };
   },
 };
 </script>
