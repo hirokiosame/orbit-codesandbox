@@ -3,7 +3,7 @@
     variant="primary"
     @click="sayHi"
   >
-    Hello Orbit!
+    Hello World!
     <o-icon name="thumbs-up" />
   </o-button>
 </template>
