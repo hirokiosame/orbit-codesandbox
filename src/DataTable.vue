@@ -101,7 +101,7 @@ export default {
 			);
 		},
 		async fetchData() {
-			const data = await fetch('https://gist.githubusercontent.com/hirokiosame/8af28509864aed5657693aef99005477/raw/b58d0d03e4b42cea25783125370925e138ed4506/planets.json').then(data => data.json());
+			const data = await fetch('https://gist.githubusercontent.com/privatenumber/8af28509864aed5657693aef99005477/raw/b58d0d03e4b42cea25783125370925e138ed4506/planets.json').then(data => data.json());
 
 			this.planets = data;
 		},
